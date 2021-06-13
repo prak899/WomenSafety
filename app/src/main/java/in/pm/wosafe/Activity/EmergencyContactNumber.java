@@ -4,13 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,18 +30,19 @@ import java.util.Date;
 import java.util.List;
 
 import in.pm.wosafe.Model.ContactModel;
-import in.pm.wosafe.Model.Profile;
+
 import in.pm.wosafe.R;
 
-import static in.pm.wosafe.Class.Constants.UserNumber;
+
 
 public class EmergencyContactNumber extends AppCompatActivity {
     private ImageButton completeButton;
     Spinner spinner;
-    String[] categorydrop = {"Select Category", "Demo1", "Demo2", "Demo3"};
+    String[] categorydrop = {"Select Category", "Spouses", "Parents", "Grandparents", "Brothers", "Sisters", "Daughters", "Sons"};
     private TextInputEditText Name, Number;
-    String text, number;
+    String number;
 
+    RadioButton Home;
 
     List<ContactModel> contactModels;
     DatabaseReference dbContact;
@@ -55,13 +59,18 @@ public class EmergencyContactNumber extends AppCompatActivity {
         contactModels = new ArrayList<>();
         dbContact = FirebaseDatabase.getInstance().getReference("Contacts");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, categorydrop);
+        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, categorydrop);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        spinner.setAdapter(adapter);
+
+        Home.setOnClickListener(v-> {
+            startActivity(new Intent(this, Dashboard.class));
+        });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = spinner.getSelectedItem().toString();
+
 
             }
 
@@ -92,10 +101,14 @@ public class EmergencyContactNumber extends AppCompatActivity {
 
 
                             String id = dbContact.push().getKey();
-                            ContactModel contactModel = new ContactModel(Name.getText().toString(), text, Number.getText().toString(), date, id);
+                            ContactModel contactModel = new ContactModel(Name.getText().toString(), spinner.getSelectedItem().toString(), Number.getText().toString(), date, id);
 
 
                             dbContact.child(number).child(Number.getText().toString()).setValue(contactModel);
+
+                            Toast.makeText(EmergencyContactNumber.this, "Contact added", Toast.LENGTH_SHORT).show();
+
+                            startActivity(new Intent(EmergencyContactNumber.this, Dashboard.class));
 
                         }
                     });
@@ -111,6 +124,8 @@ public class EmergencyContactNumber extends AppCompatActivity {
         //TextInputEditText Bindings
         Name= findViewById(R.id.address);
         Number= findViewById(R.id.pin);
+
+        Home= findViewById(R.id.imageButton1);
 
     }
 }

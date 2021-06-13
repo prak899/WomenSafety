@@ -19,4 +19,8 @@
     <color name="bottom_top">#F0F3F6</color>
 
     <color name="colorGreyBlue">#AFD1DF</color>
+
+    <color name="color_new_blue">#fff</color>
+    <color name="text_color_white">#000</color>
+    <color name="text_color_white_alpha_06">#000</color>
 </resources>

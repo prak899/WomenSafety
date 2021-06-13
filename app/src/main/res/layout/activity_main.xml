@@ -1,78 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:id="@+id/layout_root"
+    android:background="@color/color_new_blue"
+    style="@style/MatchParent"
     tools:context=".Spalsh">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ImageView
         android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:textAllCaps="true"
+        android:id="@+id/tv_splash_app_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:layout_gravity="center">
+        android:textColor="@color/text_color_white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
+        android:layout_above="@+id/tv_splash_app_version"
+        tools:text="@string/app_name"
+        android:textSize="18sp"/>
 
-        <ImageView
-            android:id="@+id/i1"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_gravity="center" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:lineSpacingExtra="8sp"
-            android:text="Women Safety Application"
-            android:textColor="#5f19ab"
-            android:textSize="22sp"
-            android:textStyle="bold"
-             />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:lineSpacingExtra="8sp"
-            android:text="By"
-            android:textColor="#5f19ab"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:lineSpacingExtra="8sp"
-            android:text="VAIRAMUTHU"
-            android:textColor="#5f19ab"
-            android:textSize="22sp"
-            android:visibility="invisible"
-            android:textStyle="bold"
-             />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:lineSpacingExtra="8sp"
-            android:text="PRINCE JOEL"
-            android:visibility="invisible"
-            android:textColor="#5f19ab"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            />
-
-    </LinearLayout>
-
-</ScrollView>
+    <TextView
+        android:id="@+id/tv_splash_app_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:textColor="@color/text_color_white_alpha_06"
+        tools:text="1.0.0"/>
+</RelativeLayout>
