@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MapsActivity">
+
+    <TextView
+        android:id="@+id/Address"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
+        android:text="Address"
+        android:textColor="@color/colorPrimary" />
+    <!--
+    <ScrollView
+        android:id="@+id/scrollViewMap"
+        android:layout_below="@id/Address"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    -->
+    <!-- based on the mobile device screen size adjust the screen size-->
+    <fragment
+        android:id="@+id/maps"
+        android:layout_below="@id/Address"
+        tools:context="com.androidtutorialpoint.googlemapsnearbyplaces.MapsActivity" xmlns:tools="http://schemas.android.com/tools" xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+
+        android:layout_width="match_parent"
+        android:layout_height="500sp"
+        />
+
+
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/locationAndCall"
+        android:layout_below="@id/maps"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/buttonLocationSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#00CCFF"
+            android:fontFamily="@font/aclonica"
+            android:text="Location" />
+
+        <Button
+            android:id="@+id/buttonCall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#00CCFF"
+            android:fontFamily="@font/aclonica"
+            android:text="Call" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/emergencyContactNumber"
+        android:layout_width="match_parent"
+        android:layout_below="@id/locationAndCall"
+        android:layout_height="30sp"
+        android:layout_gravity="center"
+        android:background="#00CCFF"
+        android:text="Emergency Contact Number"
+
+        />
+    <!--</FrameLayout>
+</FrameLayout>
+</ScrollView>-->
+
+
+    <!--  <LinearLayout
+     android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/mm"
+          android:layout_weight="1"
+          android:orientation="vertical"/>-->
+
+
+
+
+</RelativeLayout>

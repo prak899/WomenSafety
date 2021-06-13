@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.EmergencyContactNumber">
+
+    <EditText
+        android:id="@+id/emergencyContactNumberName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="NAME:-"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5sp"
+        android:textSize="40sp"/>
+
+    <EditText
+        android:id="@+id/emergencyContactNumberMobileNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="MOBILE NO:-"
+        android:layout_marginBottom="5sp"
+        android:layout_gravity="center"
+        android:textSize="40sp"/>
+    <Button
+        android:id="@+id/emergencyContactNumberAddData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="ADD DATA"
+        android:textSize="30sp"
+        android:layout_marginBottom="5sp"/>
+    <Button
+        android:id="@+id/emergencyContactNumberUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="UPDATE"
+        android:textSize="30sp"
+        android:layout_marginBottom="5sp"/>
+    <Button
+        android:id="@+id/emergencyContactNumberDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="DELETE"
+        android:textSize="30sp"
+        android:layout_marginBottom="5sp"/>
+    <Button
+        android:id="@+id/emergencyContactNumberView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="VIEW"
+        android:textSize="30sp"
+        android:layout_marginBottom="5sp"/>
+    <Button
+        android:id="@+id/emergencyContactNumberDeleteAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="DELETE ALL"
+        android:textSize="30sp"
+        android:layout_marginBottom="5sp"/>
+
+
+</LinearLayout>
