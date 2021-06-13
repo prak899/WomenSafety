@@ -18,17 +18,25 @@ import com.mikepenz.iconics.context.IconicsLayoutInflater2;
 
 import in.pm.wosafe.R;
 
+import static in.pm.wosafe.Class.Constants.MyPREFERENCES;
+import static in.pm.wosafe.Class.Constants.UserNumber;
+
 public class RegisterActivity extends AppCompatActivity {
     TextInputEditText User_Number;
-
     SharedPreferences sharedpreferences;
+
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String NUm = "nameKey";
+    public static final String Phone = "phoneKey";
+    public static final String Email = "emailKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         LayoutInflaterCompat.setFactory2(getLayoutInflater(), new IconicsLayoutInflater2(getDelegate()));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         init();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -61,9 +69,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(),OTP.class);
 
-        /*SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(UserNumber, phoneNo);
-        editor.commit();*/
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+        editor.putString(NUm, phoneNo);
+        editor.putString(Phone, "ph");
+        editor.putString(Email, "e");
+        editor.commit();
+
         intent.putExtra("phoneNo",phoneNo);
 
         startActivity(intent);

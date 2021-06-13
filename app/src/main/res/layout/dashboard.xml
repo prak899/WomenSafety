@@ -1,16 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#fff"
-    android:paddingLeft="20dp"
-    android:paddingTop="20dp"
-    android:paddingRight="20dp"
-    android:paddingBottom="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.Dashboard">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bottom_top"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
 
-</RelativeLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/AppTheme.Toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:id="@+id/header_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display_light"
+                        android:text="Women Safety"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:paddingBottom="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/promoter_recycler" />
+
+        <com.jb.dev.progress_indicator.fadeProgressBar
+            android:id="@+id/dotBounce"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:background="@color/colorPrimaryDark"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:id="@+id/empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="No cintacts added yet!" />
+        <RadioGroup
+            android:background="@color/bottom_top"
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/imageButton1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:drawableTop="@drawable/home_button_selector"
+                android:gravity="center"
+                android:text="Home"
+                android:textColor="@drawable/bottom_button_text_selector"
+                android:textSize="10sp"
+                />
+
+            <RadioButton
+                android:id="@+id/imageButton2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/category_button_selector"
+                android:gravity="center"
+                android:text="Contacts"
+                android:textColor="@drawable/bottom_button_text_selector"
+                android:textSize="10sp"
+                />
+
+            <RadioButton
+                android:id="@+id/imageButton5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/mine_button_selector"
+                android:gravity="bottom|center"
+                android:text="Me"
+                android:textColor="@drawable/bottom_button_text_selector"
+                android:textSize="10sp"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

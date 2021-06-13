@@ -1,70 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Activity.EmergencyContactNumber">
+    tools:context=".Activity.Dashboard">
 
-    <EditText
-        android:id="@+id/emergencyContactNumberName"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="NAME:-"
-        android:layout_gravity="center"
-        android:layout_marginBottom="5sp"
-        android:textSize="40sp"/>
+        android:background="@color/bottom_top"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
 
-    <EditText
-        android:id="@+id/emergencyContactNumberMobileNo"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/AppTheme.Toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:id="@+id/header_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display_light"
+                        android:text="Women Safety"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="MOBILE NO:-"
-        android:layout_marginBottom="5sp"
-        android:layout_gravity="center"
-        android:textSize="40sp"/>
-    <Button
-        android:id="@+id/emergencyContactNumberAddData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="ADD DATA"
-        android:textSize="30sp"
-        android:layout_marginBottom="5sp"/>
-    <Button
-        android:id="@+id/emergencyContactNumberUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="UPDATE"
-        android:textSize="30sp"
-        android:layout_marginBottom="5sp"/>
-    <Button
-        android:id="@+id/emergencyContactNumberDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="DELETE"
-        android:textSize="30sp"
-        android:layout_marginBottom="5sp"/>
-    <Button
-        android:id="@+id/emergencyContactNumberView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="VIEW"
-        android:textSize="30sp"
-        android:layout_marginBottom="5sp"/>
-    <Button
-        android:id="@+id/emergencyContactNumberDeleteAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="DELETE ALL"
-        android:textSize="30sp"
-        android:layout_marginBottom="5sp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:imeOptions="actionNext"
+                android:inputType="textCapCharacters|textMultiLine"
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"/>
 
-</LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/number"
+            android:layout_below="@+id/name"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:maxLength="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:id="@+id/pin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_below="@id/number"
+            android:id="@+id/type"
+            android:paddingStart="11.5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Family type"/>
+
+        <Spinner
+            android:layout_below="@id/type"
+            android:id="@+id/spinner"
+            style="@style/Widget.AppCompat.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/dropdownListPreferredItemHeight"
+            android:layout_margin="10dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/spinner_bg"
+            android:dropDownWidth="300dp"
+            android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+            android:popupBackground="@android:color/white"
+            android:popupElevation="3dp"
+            android:stateListAnimator="@drawable/spinner_sla"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry"
+            tools:targetApi="lollipop" />
+        <ImageButton
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/spinner"
+            android:id="@+id/completeButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_info_check"
+            android:background="?selectableItemBackgroundBorderless" />
+        <RadioGroup
+            android:background="@color/bottom_top"
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/imageButton1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/home_button_selector"
+                android:gravity="center"
+                android:text="Home"
+                android:textColor="@drawable/bottom_button_text_selector"
+                android:textSize="10sp"
+                />
+
+            <RadioButton
+                android:checked="true"
+                android:id="@+id/imageButton2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/category_button_selector"
+                android:gravity="center"
+                android:text="Contacts"
+                android:textColor="@drawable/bottom_button_text_selector"
+                android:textSize="10sp"
+                />
+
+            <RadioButton
+                android:id="@+id/imageButton5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/mine_button_selector"
+                android:gravity="bottom|center"
+                android:text="Me"
+                android:textColor="@drawable/bottom_button_text_selector"
+                android:textSize="10sp"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

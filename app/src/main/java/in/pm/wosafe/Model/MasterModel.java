@@ -1,50 +1,46 @@
 package in.pm.wosafe.Model;
 
-public class MasterModel {
-    private String PromoterId, PromoterName, PromoterAddress, PromoterImage, PromoterBid;
+import java.util.Date;
 
+public class MasterModel {
+    String name;
+    String familyType;
+    String number;
+    String id;
 
 
     public MasterModel() {
     }
 
-    public String getPromoterId() {
-        return PromoterId;
+    public String getName() {
+        return name;
     }
 
-    public void setPromoterId(String promoterId) {
-        PromoterId = promoterId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPromoterName() {
-        return PromoterName;
+    public String getFamilyType() {
+        return familyType;
     }
 
-    public void setPromoterName(String promoterName) {
-        PromoterName = promoterName;
+    public void setFamilyType(String familyType) {
+        this.familyType = familyType;
     }
 
-    public String getPromoterAddress() {
-        return PromoterAddress;
+    public String getNumber() {
+        return number;
     }
 
-    public void setPromoterAddress(String promoterAddress) {
-        PromoterAddress = promoterAddress;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public String getPromoterImage() {
-        return PromoterImage;
+    public String getId() {
+        return id;
     }
 
-    public void setPromoterImage(String promoterImage) {
-        PromoterImage = promoterImage;
-    }
-
-    public String getPromoterBid() {
-        return PromoterBid;
-    }
-
-    public void setPromoterBid(String promoterBid) {
-        PromoterBid = promoterBid;
+    public void setId(String id) {
+        this.id = id;
     }
 }
