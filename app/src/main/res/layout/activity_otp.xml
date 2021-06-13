@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.Otp"
+    android:id="@+id/otp_lay">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filled_text_fields_input_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FilledBox"
+        android:textSize="12sp" />
+
+    <EditText
+        android:maxLength="6"
+        android:id="@+id/otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter otp"/>
+
+    <Button
+        android:onClick="verify"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_signup"
+        style="@style/SolidButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:text="Verify"
+        tools:ignore="OnClick" />
+</RelativeLayout>

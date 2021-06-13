@@ -2,6 +2,7 @@
   "project_info": {
     "project_number": "144965469815",
     "project_id": "womensafety-1bf6d",
+    "firebase_url": "https://womensafety-1bf6d-default-rtdb.firebaseio.com/",
     "storage_bucket": "womensafety-1bf6d.appspot.com"
   },
   "client": [

@@ -18,8 +18,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.LoginActivity"/>
         <activity android:name=".Activity.RegisterActivity" />
-        <activity android:name=".Activity.MapsActivity" />
-        <activity android:name=".Activity.MobileNoAddActivity" />
+        <activity android:name=".Activity.OTP" />
+        <activity android:name=".Activity.Dashboard" />
         <activity android:name=".Activity.Logout" />
         <activity android:name=".Activity.EmergencyContactNumber" />
         <activity android:name=".Spalsh">
