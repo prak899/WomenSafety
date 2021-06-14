@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -111,6 +112,8 @@ public class ImagePickUpDialog extends Dialog {
     protected void dispatchTakePictureIntent() {
 
         // Check if there is a camera.
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
         PackageManager packageManager = mContext.getPackageManager();
         if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA) == false) {
