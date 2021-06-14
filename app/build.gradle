@@ -49,5 +49,8 @@ dependencies {
     implementation 'com.github.JB-Dev:progress-bar:1.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //implementation 'com.github.f0ris.sweetalert:library:1.5.1'
+    compile files('libs/simpleftp.jar')
+
+
 }
 apply plugin: 'com.google.gms.google-services'
