@@ -84,6 +84,7 @@ public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder
             SharedPreferences sharedPreferences = mContext.getSharedPreferences(RegisterActivity.MyPREFERENCES, Context.MODE_PRIVATE);
             String userObject = sharedPreferences.getString(RegisterActivity.NUm, null);
 
+            boolean aj= true;
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Contacts");
             ref.child(userObject).orderByChild("number").equalTo(sp.getNumber())
                     .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -93,7 +94,14 @@ public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder
                             for (DataSnapshot ds : dataSnapshot.getChildren())
                             {
                                 ds.getRef().removeValue();
-                                Toast.makeText(mContext, "Deleted", Toast.LENGTH_SHORT).show();
+
+                                if (ds.hasChild("important")) {
+                                    SharedPreferences sharedPreferences = mContext.getSharedPreferences(EmergencyContactNumber.MyPREFERENCES, Context.MODE_PRIVATE);
+                                    sharedPreferences.edit().remove(EmergencyContactNumber.NumberContacts).commit();
+                                    Toast.makeText(mContext, "Deleted", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(mContext, "Imporatant is available", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
 

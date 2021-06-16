@@ -1,43 +1,30 @@
 package in.pm.wosafe.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
-import com.jb.dev.progress_indicator.fadeProgressBar;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import in.pm.wosafe.Class.User;
 import in.pm.wosafe.Model.ContactModel;
 
 import in.pm.wosafe.R;
-
-
 
 public class EmergencyContactNumber extends AppCompatActivity {
     Spinner spinner;
