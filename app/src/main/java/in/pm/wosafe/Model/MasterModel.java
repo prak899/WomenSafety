@@ -7,6 +7,7 @@ public class MasterModel {
     String familyType;
     String number;
     String id;
+    boolean important;
 
 
     public MasterModel() {
@@ -42,5 +43,13 @@ public class MasterModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isImportant() {
+        return important;
+    }
+
+    public void setImportant(boolean important) {
+        this.important = important;
     }
 }

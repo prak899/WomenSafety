@@ -3,6 +3,9 @@ package in.pm.wosafe.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +18,19 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
 import in.pm.wosafe.Activity.Dashboard;
+import in.pm.wosafe.Activity.EmergencyContactNumber;
+import in.pm.wosafe.Activity.OTP;
+import in.pm.wosafe.Activity.RegisterActivity;
 import in.pm.wosafe.Model.MasterModel;
 import in.pm.wosafe.R;
 
@@ -47,6 +59,10 @@ public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder
         holder.promoter_address.setText(sp.getNumber());
 
 
+        if (sp.isImportant()){
+            holder.important.setVisibility(View.VISIBLE);
+        }
+
         /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +81,28 @@ public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder
             }
         });*/
         holder.Promoter_more.setOnClickListener(v-> {
+            SharedPreferences sharedPreferences = mContext.getSharedPreferences(RegisterActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+            String userObject = sharedPreferences.getString(RegisterActivity.NUm, null);
 
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Contacts");
+            ref.child(userObject).orderByChild("number").equalTo(sp.getNumber())
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                        {
+                            for (DataSnapshot ds : dataSnapshot.getChildren())
+                            {
+                                ds.getRef().removeValue();
+                                Toast.makeText(mContext, "Deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError)
+                        {
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
         holder.CallEmergency.setOnClickListener(v-> {
 
@@ -80,7 +117,7 @@ public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView promoter_bid,promoter_name, promoter_address;
+        private TextView promoter_bid,promoter_name, promoter_address, important;
         private ImageView CallEmergency, Promoter_more;
 
         public ViewHolder(View itemView) {
@@ -89,6 +126,7 @@ public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder
             promoter_name=(TextView)itemView.findViewById(R.id.promoter_name);
             promoter_address=(TextView)itemView.findViewById(R.id.promoter_address);
             promoter_bid=(TextView)itemView.findViewById(R.id.promoter_bid);
+            important=(TextView)itemView.findViewById(R.id.important);
 
 
             CallEmergency=(ImageView)itemView.findViewById(R.id.calls);

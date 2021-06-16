@@ -26,11 +26,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.jb.dev.progress_indicator.fadeProgressBar;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import in.pm.wosafe.Class.User;
 import in.pm.wosafe.Model.ContactModel;
 
 import in.pm.wosafe.R;
@@ -42,7 +44,7 @@ public class EmergencyContactNumber extends AppCompatActivity {
     String[] categorydrop = {"Select Category", "Spouses", "Parents", "Grandparents", "Brothers", "Sisters", "Daughters", "Sons"};
     private TextInputEditText Name, Number;
     String number;
-
+    SharedPreferences sharedpreferences;
 
     FloatingActionButton FabHome, FabDone;
     List<ContactModel> contactModels;
@@ -50,6 +52,8 @@ public class EmergencyContactNumber extends AppCompatActivity {
 
     CheckBox ImporantCon;
 
+    public static final String MyPREFERENCES = "NumberStorePreef" ;
+    public static final String NumberContacts = "number";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,45 +89,52 @@ public class EmergencyContactNumber extends AppCompatActivity {
 
         FabDone.setOnClickListener(v-> {
 
-            addUser();
+            String name = Name.getText().toString();
+            String numberContact = Number.getText().toString();
+
+            if (name.isEmpty()){
+                Toast.makeText(this, "Check name", Toast.LENGTH_SHORT).show();
+            }else if (numberContact.isEmpty()){
+                Toast.makeText(this, "Check number", Toast.LENGTH_SHORT).show();
+            }else {
+                addUser(name, numberContact);
+            }
         });
 
 
     }
 
-    private void addUser() {
-        String a="0";
+    private void addUser(String name, String numberContact) {
+
         Date date = new Date();
-        if (a.equals("0")) {
-            FirebaseInstanceId.getInstance().getInstanceId()
-                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                            if (!task.isSuccessful()) {
-                                Log.w("XTAGX", "getInstanceId failed", task.getException());
-                                return;
-                            }
 
 
-                            String id = dbContact.push().getKey();
-                            ContactModel contactModel = null;
+        if (!name.isEmpty() || numberContact.isEmpty()) {
 
-                            if(ImporantCon.isChecked()){
-                                contactModel = new ContactModel(Name.getText().toString(), spinner.getSelectedItem().toString(), Number.getText().toString(), date, id, true);
-                            } else {
-                                contactModel = new ContactModel(Name.getText().toString(), spinner.getSelectedItem().toString(), Number.getText().toString(), date, id, false);
+            String id = dbContact.push().getKey();
+            ContactModel contactModel = null;
 
-                            }
+            if (ImporantCon.isChecked()) {
+                contactModel = new ContactModel(name, spinner.getSelectedItem().toString(), numberContact, date, id, true);
 
-                            dbContact.child(number).child(Number.getText().toString()).setValue(contactModel);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(NumberContacts, numberContact);
+                editor.commit();
+            } else {
+                contactModel = new ContactModel(name, spinner.getSelectedItem().toString(), numberContact, date, id, false);
 
-                            Toast.makeText(EmergencyContactNumber.this, "Contact added", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(EmergencyContactNumber.this, Dashboard.class));
+            }
 
-                        }
-                    });
+            dbContact.child(number).child(Number.getText().toString()).setValue(contactModel);
+            Toast.makeText(EmergencyContactNumber.this, "Contact added", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(EmergencyContactNumber.this, Dashboard.class));
+
+            Name.setText(null);
+            Number.setText(null);
+
         } else {
             Toast.makeText(this, "Server error!", Toast.LENGTH_LONG).show();
+
         }
     }
 
@@ -139,5 +150,6 @@ public class EmergencyContactNumber extends AppCompatActivity {
 
         ImporantCon = (CheckBox)findViewById(R.id.important);
 
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
     }
 }

@@ -33,6 +33,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jb.dev.progress_indicator.dotBounceProgressBar;
 import com.jb.dev.progress_indicator.fadeProgressBar;
@@ -61,16 +62,17 @@ public class Dashboard extends AppCompatActivity {
 
     RadioButton contactsAdd, ImageUpload;
 
-    private static final int PERMISSION_REQUEST_CODE = 200;
-    private static final int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 300;
+    String number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
         init();
+        SharedPreferences prfs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        number = prfs.getString("nameKey", "");
 
-
+        String data = getIntent().getStringExtra("thatNum");
         Intent backgroundService = new Intent(getApplicationContext(), ScreenOnOffBackgroundService.class);
         startService(backgroundService);
 
@@ -110,8 +112,7 @@ public class Dashboard extends AppCompatActivity {
         ImageUpload= findViewById(R.id.imageButton5);
     }
     public void seoM(){
-        SharedPreferences prfs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String number = prfs.getString("nameKey", "");
+
         databaseReference = FirebaseDatabase.getInstance().getReference("Contacts").child(number);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -159,9 +160,13 @@ public class Dashboard extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+
+            SharedPreferences prfs = getSharedPreferences(EmergencyContactNumber.MyPREFERENCES, Context.MODE_PRIVATE);
+            String number = prfs.getString(EmergencyContactNumber.NumberContacts, "");
             i++;
             if(i==2){
                 //do something
+                Toast.makeText(this, number, Toast.LENGTH_SHORT).show();
                 Log.d(ScreenOnOffReceiver.SCREEN_TOGGLE_TAG, "Volume pressed");
             }
 
