@@ -116,64 +116,44 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlSymmetry"
             tools:targetApi="lollipop" />
-        <ImageButton
-            android:layout_alignParentEnd="true"
+        <LinearLayout
+            android:id="@+id/linear"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
             android:layout_below="@id/spinner"
-            android:id="@+id/completeButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_info_check"
-            android:background="?selectableItemBackgroundBorderless" />
-        <RadioGroup
-            android:background="@color/bottom_top"
-            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_alignParentBottom="true"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/imageButton1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@drawable/home_button_selector"
-                android:gravity="center"
-                android:text="Home"
-                android:textColor="@drawable/bottom_button_text_selector"
-                android:textSize="10sp"
-                />
-
-            <RadioButton
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/important"
+                android:layout_gravity="left"
+                android:text="Mark as important"
                 android:checked="true"
-                android:id="@+id/imageButton2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@drawable/category_button_selector"
-                android:gravity="center"
-                android:text="Contacts"
-                android:textColor="@drawable/bottom_button_text_selector"
-                android:textSize="10sp"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/imageButton5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@drawable/mine_button_selector"
-                android:gravity="bottom|center"
-                android:text="Me"
-                android:textColor="@drawable/bottom_button_text_selector"
-                android:textSize="10sp"/>
-        </RadioGroup>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:src="@drawable/ic_info_check"
+            android:contentDescription="TODO" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab1"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:src="@drawable/home"
+            android:contentDescription="TODO" />
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

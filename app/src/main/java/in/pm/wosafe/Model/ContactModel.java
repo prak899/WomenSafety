@@ -11,14 +11,16 @@ public class ContactModel {
     String Number;
     Date dateTime;
     String id;
+    boolean isImportant;
 
 
-    public ContactModel(String name, String familyType, String number, Date dateTime, String id) {
+    public ContactModel(String name, String familyType, String number, Date dateTime, String id, boolean isImportant) {
         Name = name;
         this.familyType = familyType;
         Number = number;
         this.dateTime = dateTime;
         this.id = id;
+        this.isImportant = isImportant;
     }
 
     public String getName() {
@@ -59,5 +61,13 @@ public class ContactModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isImportant() {
+        return isImportant;
+    }
+
+    public void setImportant(boolean important) {
+        isImportant = important;
     }
 }

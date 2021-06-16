@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,16 +38,17 @@ import in.pm.wosafe.R;
 
 
 public class EmergencyContactNumber extends AppCompatActivity {
-    private ImageButton completeButton;
     Spinner spinner;
     String[] categorydrop = {"Select Category", "Spouses", "Parents", "Grandparents", "Brothers", "Sisters", "Daughters", "Sons"};
     private TextInputEditText Name, Number;
     String number;
 
-    RadioButton Home;
 
+    FloatingActionButton FabHome, FabDone;
     List<ContactModel> contactModels;
     DatabaseReference dbContact;
+
+    CheckBox ImporantCon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +67,7 @@ public class EmergencyContactNumber extends AppCompatActivity {
 
         spinner.setAdapter(adapter);
 
-        Home.setOnClickListener(v-> {
+        FabHome.setOnClickListener(v-> {
             startActivity(new Intent(this, Dashboard.class));
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -80,10 +83,12 @@ public class EmergencyContactNumber extends AppCompatActivity {
             }
         });
 
-        completeButton.setOnClickListener(v-> {
+        FabDone.setOnClickListener(v-> {
 
             addUser();
         });
+
+
     }
 
     private void addUser() {
@@ -101,13 +106,18 @@ public class EmergencyContactNumber extends AppCompatActivity {
 
 
                             String id = dbContact.push().getKey();
-                            ContactModel contactModel = new ContactModel(Name.getText().toString(), spinner.getSelectedItem().toString(), Number.getText().toString(), date, id);
+                            ContactModel contactModel = null;
 
+                            if(ImporantCon.isChecked()){
+                                contactModel = new ContactModel(Name.getText().toString(), spinner.getSelectedItem().toString(), Number.getText().toString(), date, id, true);
+                            } else {
+                                contactModel = new ContactModel(Name.getText().toString(), spinner.getSelectedItem().toString(), Number.getText().toString(), date, id, false);
+
+                            }
 
                             dbContact.child(number).child(Number.getText().toString()).setValue(contactModel);
 
                             Toast.makeText(EmergencyContactNumber.this, "Contact added", Toast.LENGTH_SHORT).show();
-
                             startActivity(new Intent(EmergencyContactNumber.this, Dashboard.class));
 
                         }
@@ -119,13 +129,15 @@ public class EmergencyContactNumber extends AppCompatActivity {
 
     private void init() {
         spinner= findViewById(R.id.spinner);
-        completeButton= findViewById(R.id.completeButton);
+        FabHome= findViewById(R.id.fab1);
 
         //TextInputEditText Bindings
         Name= findViewById(R.id.address);
         Number= findViewById(R.id.pin);
 
-        Home= findViewById(R.id.imageButton1);
+        FabDone= findViewById(R.id.fab);
+
+        ImporantCon = (CheckBox)findViewById(R.id.important);
 
     }
 }
