@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import in.pm.wosafe.Activity.RegisterActivity;
 
 
 public class Spalsh extends AppCompatActivity {
+    private final int SPLASH_DISPLAY_LENGTH = 3000;
 
     private FirebaseAuth firebaseAuth;
     @Override
@@ -29,20 +31,24 @@ public class Spalsh extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow();
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null) {
-            startActivity(new Intent(Spalsh.this, Dashboard.class));
-            Spalsh.this.finish();
-        } else {
-            startActivity(new Intent(this, RegisterActivity.class));
-        }
+
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                if (firebaseAuth.getCurrentUser() != null) {
+                    startActivity(new Intent(Spalsh.this, Dashboard.class));
+                    Spalsh.this.finish();
+                } else {
+                    startActivity(new Intent(Spalsh.this, RegisterActivity.class));
+                }
+            }
+        }, SPLASH_DISPLAY_LENGTH);
+
 
     }
     public void login(View view) {

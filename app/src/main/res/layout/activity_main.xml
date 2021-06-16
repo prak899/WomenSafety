@@ -7,8 +7,8 @@
     tools:context=".Spalsh">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerInParent="true"
         android:src="@mipmap/ic_launcher"/>
 
@@ -21,7 +21,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="4dp"
         android:layout_above="@+id/tv_splash_app_version"
-        tools:text="@string/app_name"
+        tools:text="Women Saftey"
         android:textSize="18sp"/>
 
     <TextView

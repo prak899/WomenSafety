@@ -25,7 +25,8 @@
         <activity android:name=".Activity.OTP" />
         <activity android:name=".Activity.Dashboard" />
         <activity android:name=".Activity.Logout" />
-        <activity android:name=".Activity.EmergencyContactNumber" />
+        <activity android:name=".Activity.EmergencyContactNumber"
+            />
         <activity android:name=".Spalsh">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -3,14 +3,17 @@ package in.pm.wosafe.Activity;
 import android.Manifest;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -20,9 +23,11 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +36,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,7 +63,7 @@ public class Dashboard extends AppCompatActivity {
     com.jb.dev.progress_indicator.fadeProgressBar dotBounceProgressBar;
     TextView EmptyView, HeaderName;
 
-    RadioButton contactsAdd, ImageUpload;
+    RadioButton contactsAdd, ProfileSection;
 
     String number;
     double latitude, longitude;
@@ -67,6 +73,7 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
         init();
+        statusCheck();
 
         SharedPreferences prfs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         number = prfs.getString("nameKey", "");
@@ -77,8 +84,16 @@ public class Dashboard extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         seoM();
 
-        contactsAdd.setOnClickListener(v-> {
-            startActivity(new Intent(this, EmergencyContactNumber.class));
+        final LocationManager manager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE );
+
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) )
+            Toast.makeText(this, "GPS is disable!", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(this, "GPS is Enable!", Toast.LENGTH_LONG).show();
+
+        contactsAdd.setOnClickListener(v-> startActivity(new Intent(this, EmergencyContactNumber.class)));
+        ProfileSection.setOnClickListener(v-> {
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.rootLay), "Progress", Snackbar.LENGTH_LONG);snackbar.show();
         });
 
 
@@ -93,6 +108,33 @@ public class Dashboard extends AppCompatActivity {
         }
     }
 
+
+    public void statusCheck() {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+
+        }
+    }
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
     private void init() {
         recyclerView = (RecyclerView) findViewById(R.id.promoter_recycler);
         dotBounceProgressBar = (fadeProgressBar) findViewById(R.id.dotBounce);
@@ -100,9 +142,11 @@ public class Dashboard extends AppCompatActivity {
 
 
         HeaderName= findViewById(R.id.header_name);
-        contactsAdd = findViewById(R.id.imageButton2);
 
-        ImageUpload= findViewById(R.id.imageButton5);
+        contactsAdd = findViewById(R.id.imageButton2);
+        ProfileSection= findViewById(R.id.imageButton5);
+
+
     }
     public void seoM(){
 
@@ -238,5 +282,9 @@ public class Dashboard extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 }
