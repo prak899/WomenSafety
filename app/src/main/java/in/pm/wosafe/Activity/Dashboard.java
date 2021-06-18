@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2021. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
+ */
+
 package in.pm.wosafe.Activity;
 
 import android.Manifest;
@@ -261,9 +269,12 @@ public class Dashboard extends AppCompatActivity {
 
         String AlertMessage= "AM in danger and am here :-"+address+" right now.\n"+
                 state+", "+country+", "+city+", "+postalCode;
+
+        String AlertMessage1= "https://www.google.com/maps/?q="+lat+","+lon;
+
         try {
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNo, null, AlertMessage, null, null);
+            smsManager.sendTextMessage(phoneNo, null, AlertMessage1, null, null);
             Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             Toast.makeText(getApplicationContext(),ex.getMessage().toString(), Toast.LENGTH_LONG).show();
