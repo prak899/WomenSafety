@@ -49,4 +49,15 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+
+    <string name="job_success">100% Secure</string>
+    <string name="ui_ux_designer">UI/UX Designer</string>
+    <string name="my_desc">We are here to safe womens over the world to live their life freely.</string>
+    <string name="about_me">About Us</string>
+    <string name="contact">Contact</string>
+    <string name="skills">Skills</string>
+    <string name="ratings">Star Ratings</string>
+    <string name="samplereview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium bibendum sapien, ut euismod massa. Duis convallis sem sed turpis elementum auctor.</string>
+
 </resources>

@@ -100,9 +100,7 @@ public class Dashboard extends AppCompatActivity {
             Toast.makeText(this, "GPS is Enable!", Toast.LENGTH_LONG).show();
 
         contactsAdd.setOnClickListener(v-> startActivity(new Intent(this, EmergencyContactNumber.class)));
-        ProfileSection.setOnClickListener(v-> {
-            Snackbar snackbar = Snackbar.make(findViewById(R.id.rootLay), "Progress", Snackbar.LENGTH_LONG);snackbar.show();
-        });
+        ProfileSection.setOnClickListener(v-> startActivity(new Intent(this, Me.class)));
 
 
         int permission = ContextCompat.checkSelfPermission(this,

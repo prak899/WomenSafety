@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#53B368</color>
-    <color name="colorPrimaryDark">#5BB66F</color>
+    <color name="colorPrimary">#293859</color>
+    <color name="colorPrimaryDark">#293859</color>
     <color name="colorAccent">#935E56</color>
     <color name="primary_txt">#212121</color>
     <color name="orange">#ff563f</color>
@@ -23,4 +23,11 @@
     <color name="color_new_blue">#fff</color>
     <color name="text_color_white">#000</color>
     <color name="text_color_white_alpha_06">#000</color>
+
+    <color name="white">#ffffff</color>
+    <color name="grey">#E9EAEE</color>
+    <color name="yellow">#F8BA0F</color>
+    <color name="goodgrey">#535353</color>
+    <color name="blue">#293859</color>
+    <color name="lightgrey">#EEEEEE</color>
 </resources>
