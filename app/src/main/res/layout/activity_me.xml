@@ -23,6 +23,8 @@
         android:padding="16dp">
 
         <ImageView
+            android:background="?selectableItemBackground"
+            android:id="@+id/profileBack"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="10dp"
@@ -51,6 +53,8 @@
             android:layout_height="50dp">
 
             <ImageView
+                android:background="?selectableItemBackground"
+                android:id="@+id/profileNotification"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
@@ -101,7 +105,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="90dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="center"
                         android:src="@mipmap/ic_launcher" />
 
                 </androidx.cardview.widget.CardView>
@@ -121,10 +125,12 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:layout_gravity="center"
+                        android:id="@+id/profileNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/proximanovaregular"
-                        android:text="Live women safely.."
+                        android:text="887845997"
                         android:textSize="14sp" />
 
 
@@ -160,7 +166,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="97%"
+                                android:text="100%"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
@@ -231,7 +237,7 @@
                     android:fontFamily="@font/proximanovaregular"
                     android:gravity="center"
                     android:padding="13dp"
-                    android:text="User Info"
+                    android:text="App Info"
                     android:textAllCaps="true"
                     android:textColor="@color/blue"
                     android:textSize="14sp"
@@ -250,13 +256,13 @@
                     android:fontFamily="@font/proximanovaregular"
                     android:gravity="center"
                     android:padding="13dp"
-                    android:text="Experience"
+                    android:text="Play Store"
                     android:textAllCaps="true"
                     android:textColor="@color/lightgrey"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:background="@color/lightgrey" />
@@ -273,7 +279,7 @@
                     android:textAllCaps="true"
                     android:textColor="@color/lightgrey"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" />-->
 
             </LinearLayout>
 
@@ -381,6 +387,7 @@
                             android:paddingRight="8dp">
 
                             <ImageView
+                                android:id="@+id/profileCall"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:background="@drawable/circular_grey_bordersolid"
@@ -393,7 +400,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:fontFamily="@font/proximanovaregular"
-                                android:text="+91 7999193854"
+                                android:text="+91 6301784160"
                                 android:textColor="@color/goodgrey"
                                 android:textSize="15sp" />
                         </LinearLayout>
@@ -418,7 +425,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:textColor="@color/goodgrey"
-                                android:text="sanskar@theindianappguy.com"
+                                android:text="vkc123@gmail.com"
                                 android:textSize="15sp"
                                 android:fontFamily="@font/proximanovaregular" />
                         </LinearLayout>
@@ -442,7 +449,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
-                                android:text="Leeds, United Kingdom"
+                                android:text="Jilalguda, Telangana INDIA"
                                 android:textSize="15sp"
                                 android:textColor="@color/goodgrey"
                                 android:fontFamily="@font/proximanovaregular" />
@@ -490,11 +497,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/proximanovaregular"
-                                android:text="Android Developer"
+                                android:text="Women Safety"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
@@ -520,7 +528,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="Sep 2010 - Jan 2013"
+                            android:text="June 2021 - Jan 2022"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>

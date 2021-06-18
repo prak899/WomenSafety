@@ -1,10 +1,14 @@
 package in.pm.wosafe.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -42,6 +46,9 @@ public class EmergencyContactNumber extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "NumberStorePreef" ;
     public static final String NumberContacts = "number";
+
+    private static final int MY_PERMISSIONS_REQUEST_READ_SMS = 101;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +96,22 @@ public class EmergencyContactNumber extends AppCompatActivity {
             }
         });
 
+
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_SMS)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_SMS},
+                        MY_PERMISSIONS_REQUEST_READ_SMS);
+            }
+        }
 
     }
 
@@ -139,5 +162,25 @@ public class EmergencyContactNumber extends AppCompatActivity {
         ImporantCon = (CheckBox)findViewById(R.id.important);
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_SMS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+                } else {
+
+                }
+                return;
+            }
+
+        }
     }
 }
