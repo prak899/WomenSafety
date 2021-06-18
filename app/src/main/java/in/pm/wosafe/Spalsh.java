@@ -19,7 +19,7 @@ import com.mikepenz.iconics.context.IconicsLayoutInflater2;
 
 import in.pm.wosafe.Activity.Dashboard;
 import in.pm.wosafe.Activity.RegisterActivity;
-
+//Here the pull request
 
 public class Spalsh extends AppCompatActivity {
     private final int SPLASH_DISPLAY_LENGTH = 3000;
