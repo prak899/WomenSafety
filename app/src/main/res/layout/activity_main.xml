@@ -13,11 +13,11 @@
         android:src="@mipmap/ic_launcher"/>
 
     <TextView
-        android:textAllCaps="true"
+        android:fontFamily="@font/proximanovaregular"
+        android:textColor="#424242"
         android:id="@+id/tv_splash_app_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/text_color_white"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="4dp"
         android:layout_above="@+id/tv_splash_app_version"
@@ -25,12 +25,13 @@
         android:textSize="18sp"/>
 
     <TextView
+        android:fontFamily="@font/proximanovaregular"
+        android:textColor="#424242"
         android:id="@+id/tv_splash_app_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
-        android:textColor="@color/text_color_white_alpha_06"
         tools:text="1.0.0"/>
 </RelativeLayout>
