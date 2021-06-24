@@ -6,7 +6,7 @@ For saftey of indian womens
 Use the version control to access it.
 
 ```bash
-https://github.com/prak899/WoSafe.git
+https://github.com/prak899/WomenSafety.git
 ```
 
 ## Contributing
