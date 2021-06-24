@@ -23,10 +23,6 @@ This project is mantained by:
 * [Prakash Majhi](http://github.com/prak899)
 
 
-## Download
-Download the debug apk here...
-* [Click Here](https://github.com/prak899/ApkFolder/blob/6d470171b74bfb78123df61f7a25e7a936f48a2a/Application/Women.apk)
-
 
 ## Contributing
 
